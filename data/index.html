@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#10151b">
+  <meta name="description" content="웨이퍼에서 하나의 칩까지. 반도체 8대 공정을 회전 가능한 3D 모델과 단면으로 탐험하세요.">
+  <title>FAB LAB — 반도체 공정의 안쪽으로</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2310151b'/%3E%3Cpath d='m16 5 10 6v11l-10 6-10-6V11Zm0 0v12m10-6-10 6-10-6m10 6v11' fill='none' stroke='%238de8be' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a href="./" class="brand" aria-label="FAB LAB 처음으로"><svg viewBox="0 0 32 36" aria-hidden="true"><path d="m16 2 14 8v16l-14 8L2 26V10Zm0 0v16m14-8-14 8L2 10m14 8v16"/></svg><span>FAB<span class="brand-light">LAB</span><small>SEMICONDUCTOR EXPLORER</small></span></a>
+    <div class="header-center"><span class="status-dot"></span> 복잡한 기술을, 손끝에서 이해하다</div>
+    <button class="text-button" id="guide-open">이용 가이드 <span aria-hidden="true">↗</span></button>
+  </header>
+  <main>
+    <section class="intro">
+      <div><div class="eyebrow"><span class="tiny-line"></span> </div><h1>반도체 공정의 <span>안쪽으로.</span></h1><p>한 장의 웨이퍼가 하나의 칩이 되기까지. 3D로 보고, 움직이며 이해해 보세요.</p></div>
+      <div class="intro-meta"><span class="meta-number">08</span><span>핵심 공정<br><b>하나의 연결된 여정</b></span><span class="meta-divider"></span><span class="mini-cube" aria-hidden="true">◇</span><span>실시간 3D<br><b>직접 탐색하는 공정</b></span></div>
+    </section>
+    <section class="workspace" aria-label="반도체 공정 탐색기">
+      <nav class="process-nav" aria-label="8대 공정"><div class="panel-eyebrow">PROCESS JOURNEY <span>01—08</span></div><div id="stage-list"></div><div class="nav-note"><span aria-hidden="true">↺</span><p>작은 단계를 반복해<br>정교한 회로를 완성합니다.</p></div></nav>
+      <section class="viewer" aria-label="인터랙티브 3D 모델">
+        <div class="viewer-top"><div class="view-switch" role="group" aria-label="모델 보기"><button id="wafer-view" aria-pressed="true">웨이퍼 뷰</button><button id="section-view" aria-pressed="false">단면 뷰</button></div><span class="live-badge"><span class="status-dot"></span> LIVE 3D</span></div>
+        <div class="canvas-wrap" id="canvas-wrap"><canvas id="scene" tabindex="0" role="img" aria-label="반도체 공정 3D 모델. 드래그로 회전, 스크롤로 확대. 방향키로 회전하고 더하기와 빼기로 확대와 축소할 수 있습니다."></canvas><div id="webgl-error" class="webgl-error" hidden>3D 화면을 열 수 없습니다.<br>브라우저의 하드웨어 가속을 켜거나 다른 브라우저에서 열어 주세요.<br>공정 설명과 단계 탐색은 계속 사용할 수 있습니다.</div></div>
+        <div class="scene-heading"><span id="scene-kicker">01 / WAFER FABRICATION</span><h2 id="scene-title">모든 가능성의 시작</h2></div>
+        <div class="model-label"><span class="label-line"></span><div><b id="model-label">실리콘 웨이퍼</b><small id="model-sublabel">SINGLE-CRYSTAL SILICON</small></div></div>
+        <div class="scene-axis" aria-hidden="true"><span class="axis-y">Y</span><span class="axis-z">Z</span><span class="axis-x">X</span><svg viewBox="0 0 66 66"><path d="M32 35V7m0 28L8 49m24-14 26 14"/></svg></div>
+        <div class="viewer-bottom"><span class="gesture-hint"><svg viewBox="0 0 16 18" aria-hidden="true"><rect x="3" y="1" width="10" height="15" rx="5"/><path d="M8 1v6"/></svg> 드래그로 회전 <span>·</span> 스크롤로 확대</span><div class="camera-tools"><button id="zoom-out" aria-label="모델 축소">−</button><button id="zoom-in" aria-label="모델 확대">+</button><span></span><button id="camera-reset" aria-label="시점 초기화" title="시점 초기화">↺</button><button id="top-view" aria-label="위에서 보기" title="위에서 보기">⊡</button></div></div>
+      </section>
+      <aside class="inspector" aria-label="현재 공정 설명"><div class="inspector-top"><span class="eyebrow" id="stage-category">기초 소재</span><span id="stage-number">01 <span>/ 08</span></span></div><h2 id="stage-name">웨이퍼 제조</h2><p class="english-name" id="stage-english">Wafer fabrication</p><p class="description" id="stage-description"></p><div class="detail-divider"></div><h3>이 단계에서 하는 일</h3><ol class="substeps" id="substeps"></ol><div class="key-point"><span>핵심 포인트</span><p id="key-point"></p></div><div class="material-heading">모델 속 재료</div><div id="legend" class="legend"></div><a id="stage-source" class="source-link" target="_blank" rel="noopener noreferrer">공정 더 알아보기 <span>↗</span></a></aside>
+      <section class="playback" aria-label="공정 재생 제어"><div class="playback-main"><button id="play" class="play-button" aria-label="공정 재생"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 4 9 6-9 6Z"/></svg></button><div class="playback-title"><b id="playback-name">웨이퍼 제조</b><span id="playback-status">원하는 지점에서 자세히 살펴보세요</span></div></div><div class="scrubber"><div class="scrubber-label"><label for="progress">공정 진행</label><output id="progress-value" for="progress">0%</output></div><input id="progress" type="range" min="0" max="100" value="0" aria-label="현재 공정 진행률"></div><select id="speed" aria-label="재생 속도"><option value="0.5">0.5× 속도</option><option value="1" selected>1× 속도</option><option value="2">2× 속도</option></select><div class="step-controls"><button id="previous" aria-label="이전 공정">←</button><button id="next">다음 공정 <span>→</span></button></div></section>
+    </section>
+    <footer><span><span class="status-dot"></span> 학습을 위한 공정 개념 모델 <span class="footer-separator">/</span> 두께·크기·시간은 이해를 돕기 위해 조정했습니다.</span><button id="sources-open" class="text-button">모델 안내 및 출처 <span>↗</span></button></footer>
+  </main>
+  <dialog id="guide-dialog"><button class="dialog-close" aria-label="가이드 닫기">×</button><div class="eyebrow">YOUR VIRTUAL CLEANROOM</div><h2>손끝으로 탐험하는 반도체</h2><p>왼쪽에서 공정을 선택하고 모델의 변화를 살펴보세요.</p><ul><li><b>회전과 확대</b> — 모델을 드래그하거나, 스크롤·두 손가락으로 확대해 보세요.</li><li><b>단면 뷰</b> — 재료의 층과 회로가 형성되는 모습을 가까이에서 확인하세요.</li><li><b>공정 재생</b> — 선택한 공정에서 재생을 시작합니다. 재생 버튼을 다시 누르면 일시정지하고, 다시 누르면 멈춘 위치에서 이어집니다. 진행 막대로 위치를 조절할 수 있으며, 마지막 공정에서 재생이 끝납니다.</li><li><b>키보드</b> — 3D 모델에 초점을 두고 방향키로 회전, + / −로 확대·축소, Home으로 시점을 복원하세요.</li></ul><p class="dialog-note">공정 하나당 약 10초의 학습용 애니메이션입니다. 실제 제조 시간이나 장비 동작을 재현하지 않습니다.</p></dialog>
+  <dialog id="sources-dialog"><button class="dialog-close" aria-label="출처 닫기">×</button><div class="eyebrow">ABOUT THIS MODEL</div><h2>이해를 위한 작은 팹</h2><p>이 앱은 반도체의 기본 제조 원리를 표현한 학습용 3D 모델입니다. 실제 소자 구조나 제조 레시피를 재현한 물리 시뮬레이션은 아닙니다.</p><p>실제 제조에서는 포토·식각·증착·세정 등을 여러 번 반복하며, 소자와 공법에 따라 순서도 달라집니다. 단면 뷰는 층의 변화를 강조한 개념도이며, EDS의 색상은 예시 판정입니다. 패키징은 와이어 본딩 방식의 예시입니다.</p><h3>공식 참고 자료</h3><div id="sources-list"></div></dialog>
+  <div id="announcement" class="sr-only" role="status" aria-live="polite"></div>
+</body>
+</html>
